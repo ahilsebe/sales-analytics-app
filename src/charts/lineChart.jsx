@@ -1,47 +1,70 @@
 import React, { Component } from "react";
-import * as am5 from "@amcharts/amcharts5";
-import * as am5flow from "@amcharts/amcharts5/flow";
-import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
-
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+// import SalesData from "./SalesData"
+import axios from "axios";
 
 export default class Sales extends Component {
   componentDidMount() {
-  //  am4core.useTheme(am4themes_animated);
-  let root = am5.Root.new("SankeyChart"); 
+    am4core.useTheme(am4themes_animated);
+    let chart = am4core.create("SalesChart", am4charts.XYChart);
 
-// Set themes
-root.setThemes([
-  am5themes_Animated.new(root)
-]);
+    //get api data
+    axios
+      // .get("http://dummy.restapiexample.com/api/v1/employees")
+      .get("https://sheet.best/api/sheets/55da239f-582c-401b-8407-ef0e2ea1f550")
+      .then(res => {
 
-// Create series
-let series = root.container.children.push(
-  am5flow.Sankey.new(root, {
-    sourceIdField: "from",
-    targetIdField: "to",
-    valueField: "value",
-    paddingRight: 50
-  })
-);
+        const dataObj = res.data;
+        // console.log(dataObj);
+        chart.data = dataObj;
+        console.log(chart.data);
 
-series.nodes.get("colors").set("step", 2);
+      })
+      .catch(err => {
+        console.log(err);
+      })
 
-// Set data
-series.data.setAll([
-  { from: "Leads", to: "Estimates", value: 100 },
-  { from: "Estimates", to: "Bookings", value: 35 },
-  { from: "Estimates", to: "No Sale", value: 65 },
-  { from: "Bookings", to: "Accretive", value: 22 },
-  { from: "Bookings", to: "Non-Accretive", value: 23 },
-  { from: "No Sale", to: "Too Expensive", value: 25 },
-  { from: "No Sale", to: "Reason 2", value: 15 },
-  { from: "No Sale", to: "Reason 3", value: 10 },
-  { from: "No Sale", to: "Reason 4", value: 10 },
-  { from: "No Sale", to: "Reason 5", value: 5 }
-]);
- 
 
-   // this.chart = chart;
+    // Add data - official
+    // chart.data = SalesData;
+
+    // Create axes
+    let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+
+    let valueAxis1 = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis1.title.text = "[font-size: 8]Amount";
+    valueAxis1.renderer.opposite = true;
+    valueAxis1.renderer.grid.template.disabled = true;
+
+    let series3 = chart.series.push(new am4charts.LineSeries());
+    series3.dataFields.valueY = "Amount";
+    series3.dataFields.dateX = "Date";
+    series3.name = "[font-size: 8]$Amount";
+    series3.stroke = am4core.color("dodgerblue");
+    series3.strokeWidth = 2;
+    series3.tensionX = 0.7;
+    series3.yAxis = valueAxis1;
+    series3.tooltipText = "[font-size: 8]{name}: [bold font-size: 12]{valueY}[/]";
+    series3.fontSize = 4;
+
+
+    let bullet3 = series3.bullets.push(new am4charts.CircleBullet());
+    bullet3.circle.radius = 3;
+    bullet3.circle.stroke = am4core.color("dodgerblue");
+    bullet3.circle.strokeWidth = 2;
+    bullet3.circle.fill = am4core.color("#fff");
+
+
+    // Add cursor
+    chart.cursor = new am4charts.XYCursor();
+
+    // Add legend
+    // chart.legend = new am4charts.Legend();
+    // chart.legend.position = "top";
+
+    this.chart = chart;
   }
 
   componentWillUnmount() {
@@ -52,7 +75,7 @@ series.data.setAll([
   render() {
     return (
 
-        <div id="SankeyChart" style={{ width: "100%", height: "100%" }} />
+        <div id="SalesChart" style={{ width: "100%", height: "100%" }} />
 
     );
   }

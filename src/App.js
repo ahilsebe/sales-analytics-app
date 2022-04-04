@@ -10,7 +10,8 @@ import lineData  from './data/lineData'
 
 
 //charts
-import SankeyChart from './charts/lineChart';
+import SankeyChart from './charts/sankeyChart';
+import SalesChart from './charts/lineChart';
 
 function App() {
 
@@ -26,16 +27,40 @@ function App() {
   
    
    <div className="dashboard"> 
-    <div className="title">
-      <h1>Sales Analytics</h1>
-      <p>An analysis of monthly sales data</p>
+      <div className="title">
+          <h1>Sales Analytics</h1>
+          <p>An analysis of monthly sales data</p>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">
+          <h2>Commentary</h2>
+          <div class="chart-text">
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+          </p>
+          </div>
+        </div>
+          
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-title">
+          <h2>Trailing 30 days Sales</h2>
+        </div>
+          <SalesChart />
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-title">
+          <h2>Sankey</h2>
+        </div>
+          <SankeyChart />
+      </div>
+      
+      
+
     
-    </div>
-      <h2>Sankey</h2>
-         <div class="chart">
-         <SankeyChart />
-         </div>
-    </div>
+
+  </div>
 
     
 
