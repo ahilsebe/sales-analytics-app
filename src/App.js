@@ -12,6 +12,9 @@ import lineData  from './data/lineData'
 //charts
 import SankeyChart from './charts/sankeyChart';
 import SalesChart from './charts/lineChart';
+// import AreaRechartComponent from './charts/nivoBar';
+import TinyLineRechartComponent from './charts/tinyLine';
+import TreemapChart from './charts/TreemapChart';
 
 function App() {
 
@@ -24,14 +27,17 @@ function App() {
 
 
   return (
+
+
   
-   
+
+
    <div className="dashboard"> 
       <div className="title">
           <h1>Sales Analytics</h1>
           <p>An analysis of monthly sales data</p>
       </div>
-      <div class="chart-container">
+      <div class="chart-container-alt">
         <div class="chart-title">
           <h2>Commentary</h2>
           <div class="chart-text">
@@ -49,17 +55,30 @@ function App() {
           <SalesChart />
       </div>
 
+      {/* <div class="chart-container">
+        <div class="chart-title">
+          <h2>Area Chart</h2>
+        </div>
+          <AreaRechartComponent />
+      </div> */}
+
       <div class="chart-container">
         <div class="chart-title">
           <h2>Sankey</h2>
         </div>
           <SankeyChart />
       </div>
-      
-      
 
-    
 
+      <div class="chart-container">
+        <div class="chart-title">
+          <h2>Tree Map</h2>
+        </div>
+        {/* <div id="TreemapChart"> */}
+          <TreemapChart />
+          {/* </div> */}
+      </div>
+  
   </div>
 
     

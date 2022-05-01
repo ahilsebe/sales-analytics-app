@@ -6,7 +6,6 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
 export default class Sales extends Component {
   componentDidMount() {
-  //  am4core.useTheme(am4themes_animated);
   let root = am5.Root.new("SankeyChart"); 
 
 // Set themes
@@ -30,7 +29,7 @@ series.nodes.get("colors").set("step", 2);
 series.data.setAll([
   { from: "Estimates", to: "Bookings", value: 35 },
   { from: "Estimates", to: "No Sale", value: 65 },
-  { from: "Bookings", to: "Accretive", value: 22 },
+  { from: "Bookings", to: "Accretive", value: 12 },
   { from: "Bookings", to: "Non-Accretive", value: 23 },
   { from: "No Sale", to: "Too Expensive", value: 25 },
   { from: "No Sale", to: "Reason 2", value: 15 },

@@ -5,6 +5,7 @@
 html {
   margin: 0;
 }
+
 body {
   display: flex;
   /* min-height: 100vh; */
@@ -12,7 +13,7 @@ body {
   margin: 0;
   background-color: #f2f3f8;
   font-family: 'Lato', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .title {
@@ -23,22 +24,34 @@ body {
   font-weight: 600;
   margin-bottom: 0rem;
   font-family: 'Montserrat', sans-serif;
-  
 }
+
 .title p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #303030;
   text-align: center;
   font-family: 'Lato', sans-serif;
 }
 
-.dashboard {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: column;
-  margin: 1rem 2rem 1rem 2rem;
-}
+
+  .dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin: 1rem 2rem 1rem 2rem;
+  }
+
+
+
+    .dashboard {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+      margin: 1rem 2rem 1rem 2rem;
+    }
+  
 
 .dashboard h2 {
   text-align: left;
@@ -46,19 +59,33 @@ body {
 }
 
 
-.chart-container {
-  font-family: 'Lato', sans-serif;
-  display: flex;
-  align-items:stretch;
-  flex-direction: column;
-  margin-bottom: 2rem;
-  font-size: 0.8rem;
-  width: 100%;
-  height: 272px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-}
+    .chart-container {
+      font-family: 'Lato', sans-serif;
+      display: flex;
+      align-items:stretch;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      width: 100%;
+      height: 272px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    }
+
+    .chart-container-alt {
+      font-family: 'Lato', sans-serif;
+      display: flex;
+      align-items:stretch;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      width: 100%;
+      height: 272px;
+      background: #007aff;
+      border-radius: 20px;
+      box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    }
 
 
 .chart-title h2 {
@@ -68,12 +95,37 @@ body {
 }
 
 .chart-text {
+  font-size: 0.9rem;
   margin-left: 1rem;
   margin-bottom: 1rem;
   margin-right: 1rem;
   margin-top: 0rem;
   color: #303030;
-  font-size: 0.8rem;
   line-height: 1.1rem;
-  
+}
+
+.chart-container-alt {
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  align-items:stretch;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+  width: 100%;
+  height: 272px;
+  border-radius: 20px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  background-color: #007aff;
+  color: #fefefe;
+}
+
+
+.chart-text {
+  font-size: 14px;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  margin-top: 0rem;
+  color: #fff;
+  line-height: 1.1rem;
 }
