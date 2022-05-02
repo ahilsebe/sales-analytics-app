@@ -28,28 +28,40 @@ function App() {
 
   return (
 
-
-   <div className="dashboard"> 
-
-<input type="checkbox" id="active"/>
-          <label for="active" class="menu-btn"><span></span></label>
-          <label for="active" class="close"></label>
-          <div class="wrapper">
-            <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">Feedback</a></li>
-      </ul>
-      </div>
-    
-
-
-
+ 
+   <div className="dashboard">
+        <div className="navbar">
+        <img class="logo" src={require('./img/logo192.png')} />
+        </div>
       <div className="title">
           <h1>Sales Analytics</h1>
-          <p>An analysis of monthly sales data</p>
+          {/* <p>An analysis of monthly sales data</p> */}
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-title">
+          <h2>KPIs</h2>
+        </div>
+          <div class="kpi-container-outer">
+            <div class="kpi-container-inner">
+          
+                <div class="kpi-metric-container-1">
+                  <h3>Customers</h3>
+                  <h1>1,330</h1>
+                  <h3>Down</h3>
+                </div>
+ 
+     
+                <div class="kpi-metric-container-2">
+                <h3>Emails</h3>
+                  <h1>241</h1>
+                </div>
+              </div>
+     
+
+          </div>
+
+          
       </div>
       
       <div class="chart-container-alt">
@@ -95,6 +107,7 @@ function App() {
       </div>
   
   </div>
+ 
 
     
 
