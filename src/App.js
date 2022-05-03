@@ -32,6 +32,7 @@ function App() {
    <div className="dashboard">
         <div className="navbar">
         <img class="logo" src={require('./img/logo192.png')} />
+        <img class="hamburger-menu" src={require('./img/menu.png')} />
         </div>
       <div className="title">
           <h1>Sales Analytics</h1>
@@ -48,13 +49,18 @@ function App() {
                 <div class="kpi-metric-container-1">
                   <h3>Customers</h3>
                   <h1>1,330</h1>
-                  <h3>Down</h3>
+                  <div class="kpi-variance">
+                    <div class="kpi-variance-arrow"><h4>↓</h4></div>
+                    <div class="kpi-variance-number"><h4>43.2%</h4></div>
+                  </div>
                 </div>
- 
-     
                 <div class="kpi-metric-container-2">
-                <h3>Emails</h3>
+                  <h3>Emails</h3>
                   <h1>241</h1>
+                  <div class="kpi-variance">
+                    <div class="kpi-variance-arrow"><h4>↓</h4></div>
+                    <div class="kpi-variance-number"><h4>13.7%</h4></div>
+                  </div>
                 </div>
               </div>
      
