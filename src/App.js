@@ -26,6 +26,35 @@ function App() {
 //react hook for lineData
 
 
+
+// //trading crpytoPrice api
+
+
+//hooks
+const initialcrpytoPrice = "";
+const [crpytoPrice, setcrpytoPrice] = useState(initialcrpytoPrice);
+
+
+//  //get api data
+axios
+// .get("http://dummy.restapiexample.com/api/v1/employees")
+.get("https://min-api.cryptocompare.com/data/price?fsym=LINK&tsyms=USD&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
+.then(res => {
+
+  const dataObj = res.data.USD;
+  console.log(res);
+  console.log(dataObj);
+ //  dataObj = dataObj.toUpperCase();
+  setcrpytoPrice(dataObj);
+
+})
+.catch(err => {
+  console.log(err);
+})
+
+
+
+
   return (
 
  
@@ -33,6 +62,7 @@ function App() {
         <div className="navbar">
         <img class="logo" src={require('./img/logo192.png')} />
         <img class="hamburger-menu" src={require('./img/menu.png')} />
+        <img class="avatar" src={require('./img/user.png')} />
         </div>
       <div className="title">
           <h1>Sales Analytics</h1>
@@ -47,16 +77,16 @@ function App() {
             <div class="kpi-container-inner">
           
                 <div class="kpi-metric-container-1">
-                  <h3>Customers</h3>
-                  <h1>1,330</h1>
+                  <h3>Sales</h3>
+                  <h1>$102K</h1>
                   <div class="kpi-variance">
                     <div class="kpi-variance-arrow"><h4>↓</h4></div>
-                    <div class="kpi-variance-number"><h4>43.2%</h4></div>
+                    <div class="kpi-variance-number"><h4>4.2%</h4></div>
                   </div>
                 </div>
                 <div class="kpi-metric-container-2">
-                  <h3>Emails</h3>
-                  <h1>241</h1>
+                  <h3>$LINK Price</h3>
+                  <h1>{ crpytoPrice }</h1>
                   <div class="kpi-variance">
                     <div class="kpi-variance-arrow"><h4>↓</h4></div>
                     <div class="kpi-variance-number"><h4>13.7%</h4></div>
