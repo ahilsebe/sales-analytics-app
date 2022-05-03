@@ -221,6 +221,29 @@ body {
     }
 
 
+
+
+    .see-more {
+      border-color: #fefefe;
+      border-width: 1px;
+      border-style: solid;
+      color: #fefefe;
+      border-radius: 20px;
+      padding: 0.2rem 0.4rem 0.2rem 0.4rem; 
+      text-align: center;
+      width: 25%;
+      font-size: 0.8rem;
+      margin-left: auto; 
+      margin-right: 0;
+
+      
+
+    }
+
+    a {
+      text-decoration: none;
+    }
+
 .chart-title h2 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
@@ -235,6 +258,10 @@ body {
   margin-top: 0rem;
   color: #303030;
   line-height: 1.1rem;
+}
+
+.chart-text p {
+  height: 10rem;
 }
 
 .chart-container-alt {

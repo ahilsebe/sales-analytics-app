@@ -16,6 +16,8 @@ import SalesChart from './charts/lineChart';
 import TinyLineRechartComponent from './charts/tinyLine';
 import TreemapChart from './charts/TreemapChart';
 
+import LINKChart from './charts/LINKChart'
+
 function App() {
 
   //console.log(lineData);
@@ -35,7 +37,7 @@ const initialcrpytoPrice = "";
 const [crpytoPrice, setcrpytoPrice] = useState(initialcrpytoPrice);
 
 
-//  //get api data
+//  //get api data - LINK PRICE
 axios
 // .get("http://dummy.restapiexample.com/api/v1/employees")
 .get("https://min-api.cryptocompare.com/data/price?fsym=LINK&tsyms=USD&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
@@ -55,6 +57,54 @@ axios
 
 
 
+//hooks
+const initialcrpytoNews = "";
+const [crpytoNews, setcrpytoNews] = useState(initialcrpytoNews);
+const truncate = (str, max, suffix) => str.length < max ? str : `${str.substr(0, str.substr(0, max - suffix.length).lastIndexOf(' '))}${suffix}`;
+
+//  //get api data - LINK PRICE
+axios
+// .get("http://dummy.restapiexample.com/api/v1/employees")
+.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
+.then(res2 => {
+
+  const dataObj2 = truncate(res2.data.Data[0].body,400,'...');
+  console.log(res2.data.Data);
+  setcrpytoNews(dataObj2);
+
+})
+.catch(err => {
+  console.log(err);
+})
+
+//hooks
+const initialcrpytoSentiment = "";
+const [crpytoSentiment, setcrpytoSentiment] = useState(initialcrpytoSentiment);
+
+//  //get api data - LINK PRICE
+axios
+// .get("http://dummy.restapiexample.com/api/v1/employees")
+.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
+.then(res3 => {
+
+  // const dataObj3 =res3;
+  console.log(res3);
+  // setcrpytoSentiment(dataObj3);
+
+})
+.catch(err => {
+  console.log(err);
+})
+
+
+
+
+
+
+
+
+
+
   return (
 
  
@@ -65,31 +115,31 @@ axios
         <img class="avatar" src={require('./img/user.png')} />
         </div>
       <div className="title">
-          <h1>Sales Analytics</h1>
+          <h1>Crypto Analytics</h1>
           {/* <p>An analysis of monthly sales data</p> */}
       </div>
 
       <div class="chart-container">
         <div class="chart-title">
-          <h2>KPIs</h2>
+          <h2>$LINK</h2>
         </div>
           <div class="kpi-container-outer">
             <div class="kpi-container-inner">
           
                 <div class="kpi-metric-container-1">
-                  <h3>Sales</h3>
-                  <h1>$102K</h1>
+                <h3>Price</h3>
+                  <h1>{ crpytoPrice }</h1>
                   <div class="kpi-variance">
                     <div class="kpi-variance-arrow"><h4>↓</h4></div>
                     <div class="kpi-variance-number"><h4>4.2%</h4></div>
                   </div>
                 </div>
                 <div class="kpi-metric-container-2">
-                  <h3>$LINK Price</h3>
-                  <h1>{ crpytoPrice }</h1>
+                  <h3>TBD</h3>
+                  <h1>TBD</h1>
                   <div class="kpi-variance">
                     <div class="kpi-variance-arrow"><h4>↓</h4></div>
-                    <div class="kpi-variance-number"><h4>13.7%</h4></div>
+                    <div class="kpi-variance-number"><h4>TBD</h4></div>
                   </div>
                 </div>
               </div>
@@ -102,10 +152,12 @@ axios
       
       <div class="chart-container-alt">
         <div class="chart-title">
-          <h2>Commentary</h2>
+          <h2>Recent News</h2>
           <div class="chart-text">
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
-          </p>
+          <p>{ crpytoNews }</p>
+            <a href="https://www.coindesk.com/" target="_blank">
+              <div class="see-more">see more →</div>
+            </a>
           </div>
         </div>
           
@@ -113,9 +165,14 @@ axios
 
       <div class="chart-container">
         <div class="chart-title">
-          <h2>Trailing 30 days Sales</h2>
+          <h2>
+            $LINK Hourly Price
+          </h2>
         </div>
-          <SalesChart />
+          <LINKChart />
+
+          {/* for sales dashboard
+          <SalesChart /> */}
       </div>
 
       {/* <div class="chart-container">
@@ -125,7 +182,7 @@ axios
           <AreaRechartComponent />
       </div> */}
 
-      <div class="chart-container">
+      {/* <div class="chart-container">
         <div class="chart-title">
           <h2>Sankey</h2>
         </div>
@@ -137,10 +194,8 @@ axios
         <div class="chart-title">
           <h2>Tree Map</h2>
         </div>
-        {/* <div id="TreemapChart"> */}
           <TreemapChart />
-          {/* </div> */}
-      </div>
+      </div> */}
   
   </div>
  
