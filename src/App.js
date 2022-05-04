@@ -37,15 +37,31 @@ const initialcrpytoPrice = "";
 const [crpytoPrice, setcrpytoPrice] = useState(initialcrpytoPrice);
 
 
-//  //get api data - LINK PRICE
+//define coin
+const initialCoinText = localStorage.getItem("homeValue") || "ADA";
+const [coinText, setCoinText] = useState(initialCoinText);
+
+useEffect(() => {
+  localStorage.setItem("coinText", coinText);
+}, [coinText])
+
+
+// const coin = 'ADA';
+// var coin_var = {coin};
+// console.log(coin_var.coin);
+
+console.log(coinText);
+
+
+
 axios
 // .get("http://dummy.restapiexample.com/api/v1/employees")
-.get("https://min-api.cryptocompare.com/data/price?fsym=LINK&tsyms=USD&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
+.get("https://min-api.cryptocompare.com/data/price?fsym="+coinText+"&tsyms=USD&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
 .then(res => {
 
   const dataObj = res.data.USD;
-  console.log(res);
-  console.log(dataObj);
+  // console.log(res);
+  // console.log(dataObj);
  //  dataObj = dataObj.toUpperCase();
   setcrpytoPrice(dataObj);
 
@@ -69,7 +85,7 @@ axios
 .then(res2 => {
 
   const dataObj2 = truncate(res2.data.Data[0].body,400,'...');
-  console.log(res2.data.Data);
+  // console.log(res2.data.Data);
   setcrpytoNews(dataObj2);
 
 })
@@ -88,7 +104,7 @@ axios
 .then(res3 => {
 
   // const dataObj3 =res3;
-  console.log(res3);
+  // console.log(res3);
   // setcrpytoSentiment(dataObj3);
 
 })
@@ -115,13 +131,15 @@ axios
         <img class="avatar" src={require('./img/user.png')} />
         </div>
       <div className="title">
-          <h1>Crypto Analytics</h1>
+          <h1>Crypto Analysis</h1>
           {/* <p>An analysis of monthly sales data</p> */}
+          <p>Enter coin:</p>
+          <input type="text" value={coinText} onChange={(e)=> setCoinText(e.target.value)}/>
       </div>
 
       <div class="chart-container">
         <div class="chart-title">
-          <h2>$LINK</h2>
+          <h2>{ coinText } St</h2>
         </div>
           <div class="kpi-container-outer">
             <div class="kpi-container-inner">

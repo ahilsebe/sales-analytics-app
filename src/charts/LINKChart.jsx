@@ -4,16 +4,21 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 // import SalesData from "./SalesData"
 import axios from "axios";
+import coinText from "/Users/andrewhilseberg/Documents/portfolio/sales-analytics-app/src/App.js"
 
 export default class Sales extends Component {
+
+
   componentDidMount() {
     am4core.useTheme(am4themes_animated);
     let chart = am4core.create("LINKChart", am4charts.XYChart);
+    let coinText = 'ADA';
+    console.log(coinText);
 
     //get api data
     axios
       // .get("http://dummy.restapiexample.com/api/v1/employees")
-      .get("https://min-api.cryptocompare.com/data/v2/histohour?fsym=LINK&tsym=USD&limit=24&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
+      .get("https://min-api.cryptocompare.com/data/v2/histohour?fsym="+coinText+"&tsym=USD&limit=24&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
       .then(res => {
 
         const dataObj = res.data.Data.Data;

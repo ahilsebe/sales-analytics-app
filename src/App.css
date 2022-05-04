@@ -59,19 +59,50 @@ body {
   margin: 1rem;
   width: 100%;
   text-align: left;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
 }
 .title h1 {
   font-size: 2rem;
   font-weight: 600;
   margin: 0rem;
   font-family: 'Montserrat', sans-serif;
+  width: 80%;
+}
+
+.title input {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0rem;
+  font-family: 'Inter', sans-serif;
+  width: 4rem;
+  text-align: center;
+  height: 100%;
+  border-radius: 20px;
+  border-width: 1px;
+  color: #007aff;
+  background-color: #fff;
+  align-self: center;
+  padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+  border-color: #303030;
+  
 }
 
 .title p {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #000;
   font-family: 'Inter', sans-serif;
-  margin-bottom: 0rem;
+  margin: 0rem;
+  font-family: 'Inter', sans-serif;
+  width: 5rem;
+  text-align: right;
+  height: 100%;
+
+  color: #303030;
+
+  align-self: center;
+  padding: 0.2rem 0.4rem 0.2rem 0.4rem;
 }
 
 
@@ -235,9 +266,6 @@ body {
       font-size: 0.8rem;
       margin-left: auto; 
       margin-right: 0;
-
-      
-
     }
 
     a {
