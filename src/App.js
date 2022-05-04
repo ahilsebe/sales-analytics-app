@@ -133,13 +133,13 @@ axios
       <div className="title">
           <h1>Crypto Analysis</h1>
           {/* <p>An analysis of monthly sales data</p> */}
-          <p>Enter coin ticker:</p>
+          <p>Enter ticker:</p>
           <input type="text" value={coinText} onChange={(e)=> setCoinText(e.target.value)}/>
       </div>
 
       <div class="chart-container">
         <div class="chart-title">
-          <h2>{ coinText } St</h2>
+          <h2>{ coinText } Stats</h2>
         </div>
           <div class="kpi-container-outer">
             <div class="kpi-container-inner">

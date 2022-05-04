@@ -85,7 +85,7 @@ body {
   background-color: #fff;
   align-self: center;
   padding: 0.2rem 0.4rem 0.2rem 0.4rem;
-  border-color: #303030;
+  border-color: #007aff;
   
 }
 
@@ -93,14 +93,12 @@ body {
   font-size: 0.8rem;
   color: #000;
   font-family: 'Inter', sans-serif;
+  font-weight: 400;
   margin: 0rem;
-  font-family: 'Inter', sans-serif;
-  width: 5rem;
+  width: 6rem;
   text-align: right;
   height: 100%;
-
   color: #303030;
-
   align-self: center;
   padding: 0.2rem 0.4rem 0.2rem 0.4rem;
 }
@@ -262,7 +260,7 @@ body {
       border-radius: 20px;
       padding: 0.2rem 0.4rem 0.2rem 0.4rem; 
       text-align: center;
-      width: 25%;
+      width: 6rem;
       font-size: 0.8rem;
       margin-left: auto; 
       margin-right: 0;
