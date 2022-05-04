@@ -133,7 +133,7 @@ axios
       <div className="title">
           <h1>Crypto Analysis</h1>
           {/* <p>An analysis of monthly sales data</p> */}
-          <p>Enter coin:</p>
+          <p>Enter coin ticker:</p>
           <input type="text" value={coinText} onChange={(e)=> setCoinText(e.target.value)}/>
       </div>
 

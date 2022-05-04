@@ -4,7 +4,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 // import SalesData from "./SalesData"
 import axios from "axios";
-import coinText from "/Users/andrewhilseberg/Documents/portfolio/sales-analytics-app/src/App.js"
+
 
 export default class Sales extends Component {
 
