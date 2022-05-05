@@ -12,13 +12,13 @@ export default class Sales extends Component {
   componentDidMount() {
     am4core.useTheme(am4themes_animated);
     let chart = am4core.create("LINKChart", am4charts.XYChart);
-    let coinText = 'ADA';
-    console.log(coinText);
+    // let coinText = 'LINK';
+    // console.log(coinText);
 
     //get api data
     axios
       // .get("http://dummy.restapiexample.com/api/v1/employees")
-      .get("https://min-api.cryptocompare.com/data/v2/histohour?fsym="+coinText+"&tsym=USD&limit=24&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
+      .get("https://min-api.cryptocompare.com/data/v2/histohour?fsym="+"LINK"+"&tsym=USD&limit=24&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
       .then(res => {
 
         const dataObj = res.data.Data.Data;
@@ -30,6 +30,10 @@ export default class Sales extends Component {
       .catch(err => {
         console.log(err);
       })
+
+
+
+      
 
 
     // Add data - official

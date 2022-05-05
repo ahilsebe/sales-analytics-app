@@ -38,28 +38,19 @@ const [crpytoPrice, setcrpytoPrice] = useState(initialcrpytoPrice);
 
 
 //define coin
-const initialCoinText = localStorage.getItem("homeValue") || "ADA";
+const initialCoinText = localStorage.getItem("homeValue") || "LINK";
 const [coinText, setCoinText] = useState(initialCoinText);
 
 useEffect(() => {
   localStorage.setItem("coinText", coinText);
 }, [coinText])
 
-
-// const coin = 'ADA';
-// var coin_var = {coin};
-// console.log(coin_var.coin);
-
-console.log(coinText);
-
-
-
 axios
 // .get("http://dummy.restapiexample.com/api/v1/employees")
 .get("https://min-api.cryptocompare.com/data/price?fsym="+coinText+"&tsyms=USD&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
 .then(res => {
 
-  const dataObj = res.data.USD;
+  const dataObj = Math.round(res.data.USD*100)/100;
   // console.log(res);
   // console.log(dataObj);
  //  dataObj = dataObj.toUpperCase();
@@ -93,24 +84,78 @@ axios
   console.log(err);
 })
 
-//hooks
-const initialcrpytoSentiment = "";
-const [crpytoSentiment, setcrpytoSentiment] = useState(initialcrpytoSentiment);
+ //hooks
 
-//  //get api data - LINK PRICE
+ //TODO - need to evaulate status and return sentiment IFF "Success" else "n/a"
+   const initialcrpytoSentiment = "";
+  const [crpytoSentiment, setcrpytoSentiment] = useState(initialcrpytoSentiment);
+
+// //  //get api data - LINK PRICE
 axios
-// .get("http://dummy.restapiexample.com/api/v1/employees")
-.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
+// // .get("http://dummy.restapiexample.com/api/v1/employees")
+.get("https://min-api.cryptocompare.com/data/tradingsignals/intotheblock/latest?fsym="+coinText+"&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
 .then(res3 => {
 
-  // const dataObj3 =res3;
-  // console.log(res3);
-  // setcrpytoSentiment(dataObj3);
+  // console.log(res3.data.Response);
+
+  const dataObj3 = res3.data.Data.inOutVar.sentiment;
+   setcrpytoSentiment(dataObj3);
+
+
+ })
+.catch(err => {
+  console.log(err);
+})
+
+
+//HOOKS
+
+const initialHistoricalPrice = "";
+const [historicalPrice, setHistoricalPrice] = useState(initialHistoricalPrice);
+
+axios.get("https://min-api.cryptocompare.com/data/v2/histohour?fsym="+coinText+"&tsym=USD&limit=48&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
+.then(res4 => {
+  // console.log(res4.data.Data.Data[24].close);
+  const dataObj4 = res4.data.Data.Data[24].close;
+
+  setHistoricalPrice(dataObj4);
+
+ ;
+
+
+
+  
+
 
 })
 .catch(err => {
   console.log(err);
 })
+
+var priceVariance = Math.round((crpytoPrice / historicalPrice - 1)*1000) / 10;
+var priceVarianceAbs = Math.abs(priceVariance);
+console.log(priceVariance);
+var priceVarianceSymbol = "";
+
+function priceVarianceSymbolfunc(priceVariance) {
+  if (priceVariance >= 0) {
+    return "↑";
+  }
+  else {
+    return "↓";
+  }
+}
+
+priceVarianceSymbol = priceVarianceSymbolfunc(priceVariance);
+// console.log(priceVarianceSymbol);
+console.log(priceVarianceSymbol + priceVarianceAbs + "%");
+
+
+
+
+
+
+
 
 
 
@@ -131,7 +176,7 @@ axios
         <img class="avatar" src={require('./img/user.png')} />
         </div>
       <div className="title">
-          <h1>Crypto Analysis</h1>
+          <h1>Crypto</h1>
           {/* <p>An analysis of monthly sales data</p> */}
           <p>Enter ticker:</p>
           <input type="text" value={coinText} onChange={(e)=> setCoinText(e.target.value)}/>
@@ -148,21 +193,19 @@ axios
                 <h3>Price</h3>
                   <h1>{ crpytoPrice }</h1>
                   <div class="kpi-variance">
-                    <div class="kpi-variance-arrow"><h4>↓</h4></div>
-                    <div class="kpi-variance-number"><h4>4.2%</h4></div>
+                    <div class="kpi-variance-arrow"><h4>{ priceVarianceSymbol }</h4></div>
+                    <div class="kpi-variance-number"><h4>{ priceVarianceAbs }%</h4></div>
                   </div>
                 </div>
                 <div class="kpi-metric-container-2">
-                  <h3>TBD</h3>
-                  <h1>TBD</h1>
+                  <h3>Sentiment</h3>
+                  <h1>{ crpytoSentiment }</h1>
                   <div class="kpi-variance">
-                    <div class="kpi-variance-arrow"><h4>↓</h4></div>
-                    <div class="kpi-variance-number"><h4>TBD</h4></div>
+                    <div class="kpi-variance-arrow"><h4>Trend:</h4></div>
+                    <div class="kpi-variance-number"><h4>Scary</h4></div>
                   </div>
                 </div>
               </div>
-     
-
           </div>
 
           
