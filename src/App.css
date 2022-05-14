@@ -105,6 +105,7 @@ body {
 }
 
 
+
     .dashboard {
       display: flex;
       align-items: center;
@@ -112,6 +113,22 @@ body {
       flex-direction: column;
       margin: 1rem 1rem 1rem 1rem;
       padding-top: 3rem;
+      gap: 1rem;
+  }
+
+    @media (min-width: 60em) {
+      .dashboard {
+      display: flex;
+      align-items: center;
+      justify-content:center;
+      flex-direction: row;
+      margin: 1rem 1rem 1rem 1rem;
+      padding-top: 3rem;
+      flex-wrap: wrap;
+      gap: 2em;
+      
+    
+      }
     }
   
 
@@ -124,29 +141,33 @@ body {
     .chart-container {
       font-family: 'Inter', sans-serif;
       display: flex;
-      align-items:stretch;
+      align-items: stretch;
       flex-direction: column;
-      margin-bottom: 1rem;
+      /* margin-bottom: 1rem; */
       font-size: 0.8rem;
       width: 100%;
       height: 272px;
       background: white;
       border-radius: 20px;
       box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+      max-width: 36em;
     }
 
     .chart-container-alt {
       font-family: 'Inter', sans-serif;
       display: flex;
-      align-items:stretch;
+      align-items: stretch;
       flex-direction: column;
-      margin-bottom: 1rem;
+      /* margin-bottom: 1rem; */
       font-size: 0.8rem;
       width: 100%;
       height: 272px;
       background: #007aff;
       border-radius: 20px;
       box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+      max-width: 36em;
+      margin: 0rem;
+      color: white;
     }
 
     
@@ -234,7 +255,7 @@ body {
       align-items: flex-start;
       flex-direction: row;
       margin: 0rem;
-      background-color: lightcoral;
+      background-color: gray;
       border-radius: 20px;
     }
 
@@ -269,10 +290,12 @@ body {
       font-size: 0.8rem;
       margin-left: auto; 
       margin-right: 0;
+
     }
 
     a {
       text-decoration: none;
+      display: inline-block;
     }
 
 .chart-title h2 {
@@ -295,20 +318,6 @@ body {
   height: 10rem;
 }
 
-.chart-container-alt {
-  font-family: 'Inter', sans-serif;
-  display: flex;
-  align-items:stretch;
-  flex-direction: column;
-  margin-bottom: 1rem;
-  font-size: 0.8rem;
-  width: 100%;
-  height: 272px;
-  border-radius: 20px;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-  background-color: #007aff;
-  color: #fefefe;
-}
 
 
 .chart-text {

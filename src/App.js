@@ -38,7 +38,7 @@ const [crpytoPrice, setcrpytoPrice] = useState(initialcrpytoPrice);
 
 
 //define coin
-const initialCoinText = localStorage.getItem("homeValue") || "LINK";
+const initialCoinText = localStorage.getItem("homeValue") || "ADA";
 const [coinText, setCoinText] = useState(initialCoinText);
 
 useEffect(() => {
@@ -72,11 +72,11 @@ const truncate = (str, max, suffix) => str.length < max ? str : `${str.substr(0,
 //  //get api data - LINK PRICE
 axios
 // .get("http://dummy.restapiexample.com/api/v1/employees")
-.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
+.get("https://min-api.cryptocompare.com/data/v2/news/?categories=" + coinText + "&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
 .then(res2 => {
 
   const dataObj2 = truncate(res2.data.Data[0].body,400,'...');
-  // console.log(res2.data.Data);
+  console.log(res2.data.Data);
   setcrpytoNews(dataObj2);
 
 })
@@ -100,6 +100,8 @@ axios
 
   const dataObj3 = res3.data.Data.inOutVar.sentiment;
    setcrpytoSentiment(dataObj3);
+
+   
 
 
  })
@@ -136,17 +138,31 @@ var priceVariance = Math.round((crpytoPrice / historicalPrice - 1)*1000) / 10;
 var priceVarianceAbs = Math.abs(priceVariance);
 console.log(priceVariance);
 var priceVarianceSymbol = "";
+var priceVarianceSymbolArrow = "";
+var priceVarianceColor = "";
 
 function priceVarianceSymbolfunc(priceVariance) {
   if (priceVariance >= 0) {
-    return "↑";
+    return ["↑",'#16c784'];
   }
   else {
-    return "↓";
+    return ["↓",'#ea3943'];
   }
 }
 
 priceVarianceSymbol = priceVarianceSymbolfunc(priceVariance);
+priceVarianceSymbolArrow = priceVarianceSymbol[0];
+priceVarianceColor = priceVarianceSymbol[1];
+console.log(priceVarianceColor);
+
+
+
+
+//SENTIMENT ICON
+
+
+
+
 // console.log(priceVarianceSymbol);
 console.log(priceVarianceSymbol + priceVarianceAbs + "%");
 
@@ -192,8 +208,8 @@ console.log(priceVarianceSymbol + priceVarianceAbs + "%");
                 <div class="kpi-metric-container-1">
                 <h3>Price</h3>
                   <h1>{ crpytoPrice }</h1>
-                  <div class="kpi-variance">
-                    <div class="kpi-variance-arrow"><h4>{ priceVarianceSymbol }</h4></div>
+                  <div class="kpi-variance"style={{ background: priceVarianceColor }}>
+                    <div class="kpi-variance-arrow"><h4>{ priceVarianceSymbolArrow }</h4></div>
                     <div class="kpi-variance-number"><h4>{ priceVarianceAbs }%</h4></div>
                   </div>
                 </div>
@@ -201,8 +217,8 @@ console.log(priceVarianceSymbol + priceVarianceAbs + "%");
                   <h3>Sentiment</h3>
                   <h1>{ crpytoSentiment }</h1>
                   <div class="kpi-variance">
-                    <div class="kpi-variance-arrow"><h4>Trend:</h4></div>
-                    <div class="kpi-variance-number"><h4>Scary</h4></div>
+                    <div class="kpi-variance-arrow"><h4>TBD</h4></div>
+                    <div class="kpi-variance-number"><h4>TBD</h4></div>
                   </div>
                 </div>
               </div>
@@ -219,6 +235,7 @@ console.log(priceVarianceSymbol + priceVarianceAbs + "%");
             <a href="https://www.coindesk.com/" target="_blank">
               <div class="see-more">see more →</div>
             </a>
+
           </div>
         </div>
           
@@ -227,7 +244,7 @@ console.log(priceVarianceSymbol + priceVarianceAbs + "%");
       <div class="chart-container">
         <div class="chart-title">
           <h2>
-            $LINK Hourly Price
+            ADA Hourly Price
           </h2>
         </div>
           <LINKChart />
@@ -243,7 +260,7 @@ console.log(priceVarianceSymbol + priceVarianceAbs + "%");
           <AreaRechartComponent />
       </div> */}
 
-      {/* <div class="chart-container">
+      <div class="chart-container">
         <div class="chart-title">
           <h2>Sankey</h2>
         </div>
@@ -256,7 +273,36 @@ console.log(priceVarianceSymbol + priceVarianceAbs + "%");
           <h2>Tree Map</h2>
         </div>
           <TreemapChart />
-      </div> */}
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-title">
+          <h2>TBD</h2>
+        </div>
+      
+      </div>
+  
+      <div class="chart-container">
+        <div class="chart-title">
+          <h2>TBD</h2>
+        </div>
+    
+      </div>
+  
+      <div class="chart-container">
+        <div class="chart-title">
+          <h2>TBD</h2>
+        </div>
+         
+      </div>
+  
+      <div class="chart-container">
+        <div class="chart-title">
+          <h2>TBD</h2>
+        </div>
+         
+      </div>
+  
   
   </div>
  

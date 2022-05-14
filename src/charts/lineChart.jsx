@@ -75,7 +75,7 @@ export default class Sales extends Component {
   render() {
     return (
 
-        <div id="SalesChart" style={{ width: "100%", height: "100%" }} />
+        <div id="SalesChart" style={{ width: "95%", height: "90%", margin: "5%, 5%, 5%, 0%" }} />
 
     );
   }

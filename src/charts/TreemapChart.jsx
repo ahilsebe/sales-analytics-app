@@ -54,106 +54,45 @@ export default class Sales extends Component {
       name: "Root",
       children: [
         {
-          name: "First",
+          
+        
+          name: "Equities",
           children: [
             {
-              name: "Deck",
+              name: "Tech",
+              value: 40
+            },
+            {
+              name: "Other",
+              value: 25
+            }
+          ]
+        },
+        {
+          name: "Crypto",
+          children: [
+            {
+              name: "BTC",
+              value: 20
+            },
+            {
+              name: "ETH",
               value: 10
-            }
-            // ,
-            // {
-            //   name: "a",
-            //   value: 60
-            // },
-            // {
-            //   name: "A3",
-            //   value: 30
-            // }
-          ]
-        },
-        {
-          name: "Second",
-          children: [
+            },
             {
-              name: "Patio",
-              value: 35
+              name: "Alts",
+              value: 5
             }
-            // ,
-            // {
-            //   name: "B2",
-            //   value: 98
-            // },
-            // {
-            //   name: "B3",
-            //   value: 56
-            // }
-          ]
-        },
-        {
-          name: "Third",
-          children: [
-            {
-              name: "Fence",
-              value: 16
-            }
-            // ,
-            // {
-            //   name: "C2",
-            //   value: 148
-            // },
-            // {
-            //   name: "C3",
-            //   value: 126
-            // },
-            // {
-            //   name: "C4",
-            //   value: 26
-            // }
+          
           ]
         }
-        // {
-        //   name: "Fourth",
-        //   children: [
-        //     {
-        //       name: "D1",
-        //       value: 415
-        //     },
-        //     {
-        //       name: "D2",
-        //       value: 148
-        //     },
-        //     {
-        //       name: "D3",
-        //       value: 89
-        //     },
-        //     {
-        //       name: "D4",
-        //       value: 64
-        //     },
-        //     {
-        //       name: "D5",
-        //       value: 16
-        //     }
-        //   ]
-        // },
-        // {
-        //   name: "Fifth",
-        //   children: [
-        //     {
-        //       name: "E1",
-        //       value: 687
-        //     },
-        //     {
-        //       name: "E2",
-        //       value: 148
-        //     }
-        //   ]
-        // }
       ]
     };
     
     series.data.setAll([data]);
     series.set("selectedDataItem", series.dataItems[0]);
+
+    series.appear(1000, 100);
 
   }
 
@@ -165,7 +104,7 @@ export default class Sales extends Component {
   render() {
     return (
 
-        <div id="TreemapChart" style={{ width: "100%", height: "100%" }} />
+        <div id="TreemapChart" style={{ width: "95%", height: "90%", margin: "5%, 5%, 5%, 0%" }} />
 
     );
   }

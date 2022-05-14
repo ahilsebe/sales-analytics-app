@@ -27,15 +27,14 @@ series.nodes.get("colors").set("step", 2);
 
 // Set data
 series.data.setAll([
-  { from: "Estimates", to: "Bookings", value: 35 },
-  { from: "Estimates", to: "No Sale", value: 65 },
-  { from: "Bookings", to: "Accretive", value: 12 },
-  { from: "Bookings", to: "Non-Accretive", value: 23 },
-  { from: "No Sale", to: "Too Expensive", value: 25 },
-  { from: "No Sale", to: "Reason 2", value: 15 },
-  { from: "No Sale", to: "Reason 3", value: 10 },
-  { from: "No Sale", to: "Reason 4", value: 10 },
-  { from: "No Sale", to: "Reason 5", value: 5 }
+  { from: "Portfolio", to: "Equities", value: 65 },
+  { from: "Portfolio", to: "Crypto", value: 35 },
+  { from: "Equities", to: "Tech", value: 40 },
+  { from: "Equities", to: "Other", value: 25 },
+  { from: "Crypto", to: "BTC", value: 20 },
+  { from: "Crypto", to: "ETH", value: 10 },
+  { from: "Crypto", to: "Alts", value: 5 }
+
 ]);
  
 
@@ -50,7 +49,7 @@ series.data.setAll([
   render() {
     return (
 
-        <div id="SankeyChart" style={{ width: "100%", height: "100%" }} />
+        <div id="SankeyChart" style={{ width: "95%", height: "90%", margin: "5%, 5%, 5%, 0%" }} />
 
     );
   }
