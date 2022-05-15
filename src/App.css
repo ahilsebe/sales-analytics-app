@@ -247,6 +247,10 @@ body {
       margin: 1rem;
     }
 
+    .sentiment-icon {
+      max-height: 54.5px;
+      margin: 0.5rem;
+    }
 
 
     .kpi-variance {
@@ -261,6 +265,12 @@ body {
 
     .kpi-variance-arrow h4 {
       margin: 0.4rem 0.3rem 0.4rem 0.6rem;
+      font-size: 0.8rem;
+      color: #fefefe;
+    }
+
+    .kpi-variance-sentiment h4 {
+      margin: 0.4rem 0.6rem 0.4rem 0.6rem;
       font-size: 0.8rem;
       color: #fefefe;
     }

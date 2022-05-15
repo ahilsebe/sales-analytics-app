@@ -1,13 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 
-
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import lineData  from './data/lineData'
 //import { set } from 'core-js/core/dict';
 // import BarChart from './components/BarChart';
-
 
 //charts
 import SankeyChart from './charts/sankeyChart';
@@ -20,17 +18,13 @@ import LINKChart from './charts/LINKChart'
 
 function App() {
 
-  //console.log(lineData);
+//console.log(lineData);
   
-
 //code here
 
 //react hook for lineData
 
-
-
 // //trading crpytoPrice api
-
 
 //hooks
 const initialcrpytoPrice = "";
@@ -61,9 +55,6 @@ axios
   console.log(err);
 })
 
-
-
-
 //hooks
 const initialcrpytoNews = "";
 const [crpytoNews, setcrpytoNews] = useState(initialcrpytoNews);
@@ -75,9 +66,17 @@ axios
 .get("https://min-api.cryptocompare.com/data/v2/news/?categories=" + coinText + "&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
 .then(res2 => {
 
-  const dataObj2 = truncate(res2.data.Data[0].body,400,'...');
-  console.log(res2.data.Data);
-  setcrpytoNews(dataObj2);
+  var dataObj2 = truncate(res2.data.Data[0].body,400,'...');
+  //console.log(res2.data.Data);
+
+//encode html from unescape
+  var parser = new DOMParser;
+  var dom = parser.parseFromString(
+      '<!doctype html><body>' + dataObj2,
+      'text/html');
+  var decodedString = dom.body.textContent;
+
+  setcrpytoNews(decodedString);
 
 })
 .catch(err => {
@@ -96,22 +95,17 @@ axios
 .get("https://min-api.cryptocompare.com/data/tradingsignals/intotheblock/latest?fsym="+coinText+"&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
 .then(res3 => {
 
-  // console.log(res3.data.Response);
+  console.log(res3.data.Response);
 
   const dataObj3 = res3.data.Data.inOutVar.sentiment;
-   setcrpytoSentiment(dataObj3);
-
-   
-
-
+  setcrpytoSentiment(dataObj3);
  })
+
 .catch(err => {
   console.log(err);
 })
 
-
 //HOOKS
-
 const initialHistoricalPrice = "";
 const [historicalPrice, setHistoricalPrice] = useState(initialHistoricalPrice);
 
@@ -122,13 +116,6 @@ axios.get("https://min-api.cryptocompare.com/data/v2/histohour?fsym="+coinText+"
 
   setHistoricalPrice(dataObj4);
 
- ;
-
-
-
-  
-
-
 })
 .catch(err => {
   console.log(err);
@@ -136,55 +123,40 @@ axios.get("https://min-api.cryptocompare.com/data/v2/histohour?fsym="+coinText+"
 
 var priceVariance = Math.round((crpytoPrice / historicalPrice - 1)*1000) / 10;
 var priceVarianceAbs = Math.abs(priceVariance);
-console.log(priceVariance);
+// console.log(priceVariance);
 var priceVarianceSymbol = "";
 var priceVarianceSymbolArrow = "";
 var priceVarianceColor = "";
+var priceVarianceIconURL = ""
+require('./img/up.png');
+require('./img/down.png');
 
 function priceVarianceSymbolfunc(priceVariance) {
   if (priceVariance >= 0) {
-    return ["↑",'#16c784'];
+    return ["↑",'#16c784',require('./img/up.png')];
   }
   else {
-    return ["↓",'#ea3943'];
+    return ["↓",'#ea3943',require('./img/down.png')];
   }
 }
 
 priceVarianceSymbol = priceVarianceSymbolfunc(priceVariance);
 priceVarianceSymbolArrow = priceVarianceSymbol[0];
 priceVarianceColor = priceVarianceSymbol[1];
-console.log(priceVarianceColor);
+priceVarianceIconURL = priceVarianceSymbol[2];
 
+// priceVarianceIconURL = require('./img/down.png')
 
-
+console.log(priceVarianceIconURL);
 
 //SENTIMENT ICON
 
-
-
-
 // console.log(priceVarianceSymbol);
-console.log(priceVarianceSymbol + priceVarianceAbs + "%");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// console.log(priceVarianceSymbol + priceVarianceAbs + "%");
 
 
   return (
 
- 
    <div className="dashboard">
         <div className="navbar">
         <img class="logo" src={require('./img/logo192.png')} />
@@ -215,16 +187,17 @@ console.log(priceVarianceSymbol + priceVarianceAbs + "%");
                 </div>
                 <div class="kpi-metric-container-2">
                   <h3>Sentiment</h3>
-                  <h1>{ crpytoSentiment }</h1>
-                  <div class="kpi-variance">
-                    <div class="kpi-variance-arrow"><h4>TBD</h4></div>
-                    <div class="kpi-variance-number"><h4>TBD</h4></div>
+                  <img className="sentiment-icon" src={ priceVarianceIconURL } />
+                  {/* <h1>
+                    { crpytoSentiment }
+                  </h1> */}
+                  <div class="kpi-variance"style={{ background: priceVarianceColor }}>
+                    <div class="kpi-variance-sentiment"><h4>{ crpytoSentiment }</h4></div>
+                    {/* <div class="kpi-variance-number"><h4>{ crpytoSentiment }</h4></div> */}
                   </div>
                 </div>
               </div>
           </div>
-
-          
       </div>
       
       <div class="chart-container-alt">
@@ -299,18 +272,9 @@ console.log(priceVarianceSymbol + priceVarianceAbs + "%");
       <div class="chart-container">
         <div class="chart-title">
           <h2>TBD</h2>
-        </div>
-         
+        </div>     
       </div>
-  
-  
   </div>
- 
-
-    
-
-    
-
   );
 }
 
