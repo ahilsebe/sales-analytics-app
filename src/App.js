@@ -15,6 +15,9 @@ import TinyLineRechartComponent from './charts/tinyLine';
 import TreemapChart from './charts/TreemapChart';
 
 import LINKChart from './charts/LINKChart'
+import Sales from './charts/LINKChart';
+
+
 
 function App() {
 
@@ -60,6 +63,10 @@ const initialcrpytoNews = "";
 const [crpytoNews, setcrpytoNews] = useState(initialcrpytoNews);
 const truncate = (str, max, suffix) => str.length < max ? str : `${str.substr(0, str.substr(0, max - suffix.length).lastIndexOf(' '))}${suffix}`;
 
+const initialnewsURL = "";
+const [newsURL, setnewsURL] = useState(initialnewsURL);
+
+
 //  //get api data - LINK PRICE
 axios
 // .get("http://dummy.restapiexample.com/api/v1/employees")
@@ -67,7 +74,8 @@ axios
 .then(res2 => {
 
   var dataObj2 = truncate(res2.data.Data[0].body,400,'...');
-  //console.log(res2.data.Data);
+  var newsURL = res2.data.Data[0].guid;
+
 
 //encode html from unescape
   var parser = new DOMParser;
@@ -77,12 +85,15 @@ axios
   var decodedString = dom.body.textContent;
 
   setcrpytoNews(decodedString);
+  setnewsURL(newsURL);
+  
 
 })
 .catch(err => {
   console.log(err);
 })
 
+console.log(newsURL);
  //hooks
 
  //TODO - need to evaulate status and return sentiment IFF "Success" else "n/a"
@@ -95,10 +106,12 @@ axios
 .get("https://min-api.cryptocompare.com/data/tradingsignals/intotheblock/latest?fsym="+coinText+"&api_key={e6a54e3b9523cbc86de7aaec8faeea1c198adfd5ce0505318ec00b9fdf86e142}")
 .then(res3 => {
 
-  console.log(res3.data.Response);
+  // console.log(res3.data.Response);
 
   const dataObj3 = res3.data.Data.inOutVar.sentiment;
+
   setcrpytoSentiment(dataObj3);
+
  })
 
 .catch(err => {
@@ -131,31 +144,65 @@ var priceVarianceIconURL = ""
 require('./img/up.png');
 require('./img/down.png');
 
-function priceVarianceSymbolfunc(priceVariance) {
-  if (priceVariance >= 0) {
-    return ["↑",'#16c784',require('./img/up.png')];
+//move the sentiment icons to another function and look for "bearish, neutral or bullish to pull back image"
+
+
+function sentimentIconfunc(crpytoSentiment) {
+  if (crpytoSentiment == "bearish") {
+    return ["bearish",require('./img/down.png'),'#ea4d53'];
+  }
+  if (crpytoSentiment == "neutral") {
+    return ["neutral", require('./img/neutral.png'),'#b7b7b7'];
   }
   else {
-    return ["↓",'#ea3943',require('./img/down.png')];
+    return ["bullish", require('./img/up.png'),'#65c36e'];
+  }
+}
+var sentimentIcon = "";
+var sentimentColor = "";
+sentimentIcon = sentimentIconfunc(crpytoSentiment)[1];
+sentimentColor = sentimentIconfunc(crpytoSentiment)[2];
+
+// console.log("Sentiment: "+ crpytoSentiment + " | ImageURL: " + sentimentIcon +" | Color: " + sentimentColor);
+
+
+
+
+
+
+
+
+
+function priceVarianceSymbolfunc(priceVariance) {
+  if (priceVariance >= 0) {
+    return ["↑",'#65c36e'];
+  }
+  else {
+    return ["↓",'#ea4d53'];
   }
 }
 
 priceVarianceSymbol = priceVarianceSymbolfunc(priceVariance);
 priceVarianceSymbolArrow = priceVarianceSymbol[0];
 priceVarianceColor = priceVarianceSymbol[1];
-priceVarianceIconURL = priceVarianceSymbol[2];
+
 
 // priceVarianceIconURL = require('./img/down.png')
 
-console.log(priceVarianceIconURL);
+
 
 //SENTIMENT ICON
 
 // console.log(priceVarianceSymbol);
 // console.log(priceVarianceSymbol + priceVarianceAbs + "%");
 
+const hello = "";
+<Sales hello='Hello'/>
+
 
   return (
+
+ 
 
    <div className="dashboard">
         <div className="navbar">
@@ -187,11 +234,11 @@ console.log(priceVarianceIconURL);
                 </div>
                 <div class="kpi-metric-container-2">
                   <h3>Sentiment</h3>
-                  <img className="sentiment-icon" src={ priceVarianceIconURL } />
+                  <img className="sentiment-icon" src={ sentimentIcon } />
                   {/* <h1>
                     { crpytoSentiment }
                   </h1> */}
-                  <div class="kpi-variance"style={{ background: priceVarianceColor }}>
+                  <div class="kpi-variance"style={{ background: sentimentColor }}>
                     <div class="kpi-variance-sentiment"><h4>{ crpytoSentiment }</h4></div>
                     {/* <div class="kpi-variance-number"><h4>{ crpytoSentiment }</h4></div> */}
                   </div>
@@ -205,9 +252,15 @@ console.log(priceVarianceIconURL);
           <h2>Recent News</h2>
           <div class="chart-text">
           <p>{ crpytoNews }</p>
-            <a href="https://www.coindesk.com/" target="_blank">
-              <div class="see-more">see more →</div>
-            </a>
+            
+     
+          
+            <div class="news-bottom-container">
+              <div class="see-more">
+                <a href={newsURL} target="_blank">read more →</a>
+              </div>
+            </div>
+     
 
           </div>
         </div>
@@ -252,7 +305,6 @@ console.log(priceVarianceIconURL);
         <div class="chart-title">
           <h2>TBD</h2>
         </div>
-      
       </div>
   
       <div class="chart-container">

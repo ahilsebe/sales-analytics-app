@@ -6,7 +6,7 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import axios from "axios";
 
 
-export default class Sales extends Component {
+export default class Sales extends React.Component {
 
 
   componentDidMount() {
@@ -24,9 +24,20 @@ export default class Sales extends Component {
         const dataObj = res.data.Data.Data;
         // console.log(dataObj);
         chart.data = dataObj;
-        // console.log(chart.data);
+        // console.log(chart.data[0].time * 1000);
+
+        // const doubled = chart.data.map((high) => high);
+        // console.log(doubled);   
+
+
+
+        // var a = [1, 2, 3];
+        // var b = a.map(x => x * 5); // <-------
+
+        // console.log(b);   // [5, 10, 15]
 
       })
+
       .catch(err => {
         console.log(err);
       })
@@ -83,7 +94,7 @@ export default class Sales extends Component {
     return (
 
         <div id="LINKChart" style={{ width: "95%", height: "90%", margin: "5%, 5%, 5%, 0%" }} />
-
+        
     );
   }
 }
